@@ -38,7 +38,7 @@ export const Modal = ({ isOpen, onClose, shoeId }: ModalProps) => {
       />
       <div className={styles.modalContent}>
         <h2>
-          {shoeDetails.id} - ${shoeDetails.price}
+          {shoeDetails.id} - {shoeDetails.price} USD
         </h2>
         <br />
         <p>{shoeDetails.description}</p>
