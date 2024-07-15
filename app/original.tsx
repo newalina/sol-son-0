@@ -3,19 +3,74 @@
 import { useState } from "react";
 import Image from "next/image";
 import styles from "./page.module.css";
-import { Header } from "./components/Header";
-import { Shoe } from "./components/Shoe";
 
 export default function Home() {
+  // const [modalOpen, setModalOpen] = useState(false);
+  // const [selectedShoe, setSelectedShoe] = useState<string | null>(null);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLImageElement>) => {
+    const shoeImage = e.currentTarget;
+    const rect = shoeImage.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+
+    const canvas = document.createElement("canvas");
+    canvas.width = shoeImage.naturalWidth;
+    canvas.height = shoeImage.naturalHeight;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+    ctx.drawImage(shoeImage, 0, 0, canvas.width, canvas.height);
+
+    const scaleX = canvas.width / rect.width;
+    const scaleY = canvas.height / rect.height;
+    const pixel = ctx.getImageData(x * scaleX, y * scaleY, 1, 1).data;
+    const alpha = pixel[3];
+
+    shoeImage.style.cursor = alpha > 0 ? "pointer" : "default";
+  };
+
+  // const handleShoeSelect = (id: string) => {
+  //   setSelectedShoe(id);
+  //   setModalOpen(true);
+  // };
+
+  // const closeModal = () => {
+  //   setModalOpen(false);
+  // };
+
   return (
     <main className={styles.main}>
       <div className={styles.header}>
-        <Header></Header>
+        <Image
+          className={styles.logo}
+          src="/logos/logo black.png"
+          alt="ss0 logo black"
+          width={330}
+          height={58}
+        />
       </div>
-      <div className={styles.body}>
-        <Shoe id="ss0"></Shoe>
-        <Shoe id="ss01"></Shoe>
 
+      <div className={styles.body}>
+        <Image
+          id="ss0"
+          className={styles.shoe}
+          src="/images/ss0.png"
+          alt="ss0 shoe 0"
+          width={2717}
+          height={3153}
+          onMouseMove={handleMouseMove}
+          // onClick={() => handleShoeSelect("ss0")}
+        />
+        <Image
+          id="ss01"
+          className={styles.shoe}
+          src="/images/ss01.png"
+          alt="ss0 shoe 01"
+          width={2748}
+          height={2641}
+          onMouseMove={handleMouseMove}
+          // onClick={() => handleShoeSelect("ss01")}
+        />
         {/* {modalOpen && (
           <div className={styles.modal}>
             <div className={styles.modalContent}>

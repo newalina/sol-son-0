@@ -1,0 +1,27 @@
+{
+  "ss01": {
+    "id": "SS_0.1",
+    "price": 1350,
+    "description": "Leather Black Zip Ankle Boot w/ Internal Wedge",
+    "details": [
+      "leather upper and lining",
+      "sterling silver hardware",
+      "rubber/tpu outsole",
+      "internal wedge 2cm",
+      "heel 4.5 cm"
+    ]
+  },
+  "ss0": {
+    "id": "SS_0",
+    "price": 1050,
+    "description": "Leather & Neoprene Black Zip Ankle Boot w/ Internal Wedge",
+    "details": [
+      "leather and neoprene upper/lining",
+      "asymmetrical right and left zippers",
+      "sterling silver hardware",
+      "rubber/tpu outsole",
+      "internal wedge 2cm",
+      "heel 4.5 cm"
+    ]
+  }
+}
