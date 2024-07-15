@@ -21,7 +21,6 @@
   background: url(/images/grass.png);
   background-repeat: no-repeat;
   background-size: 100vw 100vh;
-  font-family: "Albertsthal";
 }
 
 .header {
@@ -161,6 +160,7 @@
   padding: 25px 15px;
   height: 550px;
   width: 300px;
+  font-family: WonderType;
   line-height: 17px;
 }
 
@@ -180,13 +180,13 @@
 
 .input {
   padding: 2px;
-  font-family: "Albertsthal";
+  font-family: WonderType;
 }
 
 .preorder {
   background-color: black;
   color: white;
-  font-family: "Albertsthal";
+  font-family: WonderType;
   font-size: large;
 }
 

@@ -77,6 +77,7 @@ export const Modal = ({ isOpen, onClose, shoeId }: ModalProps) => {
           <br />
           <br />
           <label>Notes for SSO: </label>
+          <br />
           <textarea className={styles.input} name="notes"></textarea>
           <br />
           <br />
