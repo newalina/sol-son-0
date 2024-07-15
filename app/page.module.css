@@ -28,13 +28,6 @@
   top: 26px;
 }
 
-.content {
-  position: relative;
-  font-size: 16px;
-  margin-left: 16px;
-  color: #070707;
-}
-
 .body {
   display: flex;
   flex-direction: row;
@@ -52,85 +45,10 @@
   min-width: 208px;
   height: auto;
   bottom: 52px;
+  z-index: 1;
 }
 
-.footer {
-  display: flex;
-  position: fixed;
-  gap: 13px;
-  bottom: 26px;
-}
-
-.icon {
-  color: rgb(153, 153, 153);
-  font-size: 24px;
-}
-
-@media (orientation: portrait) {
-  .main {
-    padding: 26px 0px;
-  }
-
-  .body {
-    flex-direction: column;
-    margin-top: 156px;
-    bottom: 52px;
-  }
-}
-
-/* @media screen and (max-width: 1024px) and (min-width: 641px) {
-  .body {
-    gap: 52px;
-  }
-}
-
-@media screen and (max-width: 640px) {
-  .body {
-    gap: 26px;
-  }
-} */
-
-/* @media screen and (max-width: 915px) and (max-height: 915px) {
-  main {
-    padding: 26px 0 0 52px;
-  }
-
-  .content {
-    font-size: 14px;
-  }
-
-  .footer {
-    right: 26px;
-    bottom: 26px;
-  }
-
-  .body {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    gap: 100px;
-  }
-
-  .shoe {
-    position: relative;
-    align-self: flex-end;
-    width: 494px;
-    height: auto;
-    bottom: 52px;
-  }
-
-  .body {
-    flex-direction: column;
-  }
-
-  .shoe-z {
-    width: 520px;
-    margin-bottom: 20px;
-  }
-} */
-
-.modalContainer {
+.modal {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -140,38 +58,23 @@
   right: 0;
   bottom: 0;
   background: rgba(0, 0, 0, 0.5);
-  gap: 5px;
-  z-index: 1000;
+  z-index: 1001;
 }
 
 .modalImage {
-  /* flex: 1; */
-  /* flex-direction: row; */
-  position: relative;
-  /* padding: 20px; */
-  /* margin-right: 20px; */
+  margin-right: 10px;
+  z-index: 1002;
 }
 
 .modalContent {
-  /* flex: 1; */
-  /* display: flex; */
   position: relative;
-  background: white;
   padding: 25px 15px;
   height: 550px;
   width: 300px;
+  background: white;
   font-family: WonderType;
   line-height: 17px;
-}
-
-.closeButton {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background: none;
-  border: none;
-  font-size: 1.5rem;
-  cursor: pointer;
+  z-index: 1002;
 }
 
 .details {
@@ -190,14 +93,34 @@
   font-size: large;
 }
 
+.close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
 @media (orientation: portrait) {
-  .modalContainer {
-    flex-direction: col;
+  .main {
+    padding: 26px 0px;
   }
 
   .body {
     flex-direction: column;
     margin-top: 156px;
     bottom: 52px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .modalImage {
+    display: none;
+  }
+
+  .modalContent {
+    height: fit-content;
   }
 }

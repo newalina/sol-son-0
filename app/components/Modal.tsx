@@ -27,8 +27,14 @@ export const Modal = ({ isOpen, onClose, shoeId }: ModalProps) => {
 
   if (!isOpen) return null;
 
+  const handleOverlayClick = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (e.target === e.currentTarget) {
+      onClose();
+    }
+  };
+
   return (
-    <div className={styles.modalContainer}>
+    <div className={styles.modal}>
       <Image
         className={styles.modalImage}
         src={`/images/${shoeId}_details.jpeg`}
@@ -85,7 +91,7 @@ export const Modal = ({ isOpen, onClose, shoeId }: ModalProps) => {
             PREORDER
           </button>
         </form>
-        <button className={styles.closeButton} onClick={onClose}>
+        <button className={styles.close} onClick={onClose}>
           &times;
         </button>
       </div>
