@@ -6,8 +6,14 @@ const CLIENT_ID = process.env.CLIENT_ID;
 const CLIENT_SECRET = process.env.CLIENT_SECRET;
 const REDIRECT_URI = process.env.REDIRECT_URI;
 const SPREADSHEET_ID = process.env.SPREADSHEET_ID;
+
+const CREDENTIALS = {
+  client_id: CLIENT_ID,
+  client_secret: CLIENT_SECRET,
+  redirect_uris: [REDIRECT_URI],
+};
+
 const TOKEN_PATH = path.resolve("credentials/token.json");
-const CREDENTIALS_PATH = path.resolve("credentials/oauth2.keys.json");
 
 const authenticate = async () => {
   const credentials = JSON.parse(
