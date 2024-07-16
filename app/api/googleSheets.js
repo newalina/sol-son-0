@@ -8,20 +8,12 @@ const CLIENT_ID = process.env.CLIENT_ID;
 const CLIENT_SECRET = process.env.CLIENT_SECRET;
 const REDIRECT_URI = process.env.REDIRECT_URI;
 const SPREADSHEET_ID = process.env.SPREADSHEET_ID;
-const CREDENTIALS_PATH = path.resolve(process.env.CREDENTIALS_PATH);
+// const CREDENTIALS_PATH = path.resolve(process.env.CREDENTIALS_PATH)
 
-const CREDENTIALS = {
-  client_id: CLIENT_ID,
-  client_secret: CLIENT_SECRET,
-  redirect_uris: [REDIRECT_URI],
-};
-
+const CREDENTIALS_PATH = path.resolve("credentials/oauth2.keys.json");
 const TOKEN_PATH = path.resolve("credentials/token.json");
 
 const authenticate = async () => {
-  const credentials = JSON.parse(
-    fs.readFileSync(CREDENTIALS_PATH, { encoding: "utf-8" })
-  );
   const oAuth2Client = new google.auth.OAuth2(
     CLIENT_ID,
     CLIENT_SECRET,
@@ -31,7 +23,13 @@ const authenticate = async () => {
   if (fs.existsSync(TOKEN_PATH)) {
     const token = fs.readFileSync(TOKEN_PATH, { encoding: "utf-8" });
     oAuth2Client.setCredentials(JSON.parse(token));
+  } else {
+    const credentials = JSON.parse(
+      fs.readFileSync(CREDENTIALS_PATH, { encoding: "utf-8" })
+    );
+    oAuth2Client.setCredentials(credentials);
   }
+
   return oAuth2Client;
 };
 
