@@ -21,6 +21,7 @@ const authenticate = async () => {
     redirect_uri
   );
 
+  console.log("Client ID:", process.env.client_id ? "Loaded" : "Not Loaded");
   console.log("CREDENTIALS_PATH:", credentials_path);
 
   if (fs.existsSync(TOKEN_PATH)) {
