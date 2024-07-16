@@ -86,6 +86,14 @@
   font-family: WonderType;
 }
 
+.notes {
+  padding: 2px;
+  width: 95%;
+  max-height: 60px;
+  font-family: WonderType;
+  resize: none;
+}
+
 .preorder {
   background-color: black;
   color: #f8f8f8;

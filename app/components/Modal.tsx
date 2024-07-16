@@ -1,4 +1,5 @@
-import React, { ReactNode } from "react";
+import React, { useState } from "react";
+import axios from "axios";
 import Image from "next/image";
 import styles from "../page.module.css";
 import catalogue from "../../data/catalogue.json";
@@ -24,12 +25,44 @@ const shoes: Catalogue = catalogue;
 
 export const Modal = ({ isOpen, onClose, shoeId }: ModalProps) => {
   const shoeDetails = shoes[shoeId];
+  const [formData, setFormData] = useState({
+    id: shoeId,
+    size: "",
+    name: "",
+    email: "",
+    notes: "",
+  });
 
   if (!isOpen) return null;
 
-  const handleOverlayClick = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (e.target === e.currentTarget) {
-      onClose();
+  const handleChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+    >
+  ) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+
+    const formData = new FormData(e.currentTarget);
+    const data = {
+      id: shoeId,
+      size: formData.get("size") as string,
+      name: formData.get("name") as string,
+      email: formData.get("email") as string,
+      notes: formData.get("notes") as string,
+    };
+
+    try {
+      const response = await axios.post("/api/submit", data);
+      console.log("Form submitted successfully:", response.data);
+      alert("Form submitted successfully");
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      alert("Error submitting form");
     }
   };
 
@@ -56,35 +89,60 @@ export const Modal = ({ isOpen, onClose, shoeId }: ModalProps) => {
           ))}
         </ul>
         <br />
-        <form>
-          <select className={styles.input}>
-            <option disabled selected>
+        <form onSubmit={handleSubmit}>
+          <select
+            className={styles.input}
+            name="size"
+            value={formData.size}
+            onChange={handleChange}
+            required
+          >
+            <option value="" selected disabled>
               Size (EU)
             </option>
-            <option>35</option>
-            <option>36</option>
-            <option>37</option>
-            <option>38</option>
-            <option>39</option>
-            <option>40</option>
-            <option>41</option>
-            <option>42</option>
+            <option value="35">35</option>
+            <option value="36">36</option>
+            <option value="37">37</option>
+            <option value="38">38</option>
+            <option value="39">39</option>
+            <option value="40">40</option>
+            <option value="41">41</option>
+            <option value="42">42</option>
           </select>
           <br />
           <br />
           <label>Name: </label>
           <br />
-          <input className={styles.input} type="text" name="name" />
+          <input
+            className={styles.input}
+            type="text"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            required
+          />
           <br />
           <br />
           <label>Email: </label>
           <br />
-          <input className={styles.input} type="email" name="email" />
+          <input
+            className={styles.input}
+            type="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            required
+          />
           <br />
           <br />
           <label>Notes for SSO: </label>
           <br />
-          <textarea className={styles.input} name="notes"></textarea>
+          <textarea
+            className={styles.notes}
+            name="notes"
+            value={formData.notes}
+            onChange={handleChange}
+          ></textarea>
           <br />
           <br />
           <button className={styles.preorder} type="submit">
