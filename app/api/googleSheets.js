@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 const { google } = require("googleapis");
 const fs = require("fs");
 const path = require("path");
@@ -6,6 +8,7 @@ const CLIENT_ID = process.env.CLIENT_ID;
 const CLIENT_SECRET = process.env.CLIENT_SECRET;
 const REDIRECT_URI = process.env.REDIRECT_URI;
 const SPREADSHEET_ID = process.env.SPREADSHEET_ID;
+const CREDENTIALS_PATH = path.resolve(process.env.CREDENTIALS_PATH);
 
 const CREDENTIALS = {
   client_id: CLIENT_ID,
