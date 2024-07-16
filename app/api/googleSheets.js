@@ -8,10 +8,8 @@ const CLIENT_ID = process.env.CLIENT_ID;
 const CLIENT_SECRET = process.env.CLIENT_SECRET;
 const REDIRECT_URI = process.env.REDIRECT_URI;
 const SPREADSHEET_ID = process.env.SPREADSHEET_ID;
-// const CREDENTIALS_PATH = path.resolve(process.env.CREDENTIALS_PATH)
-
-const CREDENTIALS_PATH = path.resolve("credentials/oauth2.keys.json");
-const TOKEN_PATH = path.resolve("credentials/token.json");
+const CREDENTIALS_PATH = process.env.CREDENTIALS_PATH;
+const TOKEN_PATH = process.env.TOKEN_PATH;
 
 const authenticate = async () => {
   const oAuth2Client = new google.auth.OAuth2(

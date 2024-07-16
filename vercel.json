@@ -6,7 +6,7 @@
       "use": "@vercel/next"
     },
     {
-      "src": "api/**/*.js",
+      "src": "api/**/*.ts",
       "use": "@vercel/node"
     }
   ],
@@ -15,5 +15,20 @@
       "src": "/api/(.*)",
       "dest": "/api/$1"
     }
-  ]
+  ],
+  "build": {
+    "env": {
+      "CLIENT_ID": "@client_id",
+      "CLIENT_SECRET": "@client_secret",
+      "REDIRECT_URI": "@redirect_uri",
+      "SPREADSHEET_ID": "@spreadsheet_id",
+      "CREDENTIALS_PATH": "./credentials/oauth2.keys.json",
+      "TOKEN_PATH": "./credentials/token.json"
+    }
+  },
+  "functions": {
+    "api/**/*.ts": {
+      "includeFiles": "credentials/**"
+    }
+  }
 }
