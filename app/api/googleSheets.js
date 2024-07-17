@@ -14,7 +14,7 @@ const keys = JSON.parse(process.env.GOOGLE_CREDENTIALS);
 
 const clientId = keys.web.client_id;
 const clientSecret = keys.web.client_secret;
-const redirectUri = keys.web.redirect_uris;
+const redirectUri = keys.web.redirect_uris[0];
 const spreadsheetId = process.env.SPREADSHEET_ID;
 
 const token = {
