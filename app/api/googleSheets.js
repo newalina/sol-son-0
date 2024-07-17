@@ -12,6 +12,7 @@ const path = require("path");
 
 let keys;
 try {
+  console.log("GOOGLE_CREDENTIALS:", process.env.GOOGLE_CREDENTIALS);
   keys = JSON.parse(process.env.GOOGLE_CREDENTIALS);
 } catch (error) {
   console.error("Error parsing GOOGLE_CREDENTIALS:", error);
