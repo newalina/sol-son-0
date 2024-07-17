@@ -4,19 +4,21 @@ const { google } = require("googleapis");
 const fs = require("fs");
 const path = require("path");
 
-// const credentialsPath = path.resolve(
-//   process.cwd(),
-//   process.env.CREDENTIALS_PATH || "./credentials/oauth2.keys.json"
-// );
+const credentialsPath = path.resolve(
+  process.cwd(),
+  process.env.CREDENTIALS_PATH || "./credentials/oauth2.keys.json"
+);
 // const keys = JSON.parse(fs.readFileSync(credentialsPath, "utf8"));
+
+console.log("CREDENTIALS_PATH:", credentialsPath);
 
 let keys;
 try {
-  console.log("GOOGLE_CREDENTIALS:", process.env.GOOGLE_CREDENTIALS);
-  keys = JSON.parse(process.env.GOOGLE_CREDENTIALS);
+  keys = JSON.parse(fs.readFileSync(credentialsPath, "utf8"));
+  console.log("Loaded credentials successfully");
 } catch (error) {
-  console.error("Error parsing GOOGLE_CREDENTIALS:", error);
-  throw new Error("Invalid GOOGLE_CREDENTIALS format");
+  console.error("Error reading credentials:", error);
+  throw new Error("Failed to load credentials");
 }
 
 const clientId = keys.web.client_id;
