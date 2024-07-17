@@ -2,8 +2,9 @@ console.log("API route loaded");
 
 import { NextResponse } from "next/server";
 import appendToSheet from "../googleSheets";
+import path from "path";
 
-export async function POST(request: Request) {
+export async function POST(request) {
   try {
     const data = await request.json();
     console.log("Received data:", data);
@@ -13,6 +14,9 @@ export async function POST(request: Request) {
 
     await appendToSheet([id, size, name, email, notes]);
     console.log("Appending data:", data);
+
+    console.log("Client ID:", process.env.CLIENT_ID);
+    console.log("Credentials Path:", process.env.CREDENTIALS_PATH);
 
     return NextResponse.json({ message: "Form submitted successfully!" });
   } catch (error) {
