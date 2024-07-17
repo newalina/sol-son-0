@@ -19,7 +19,7 @@ const token = {
 
 const credentialsPath = path.resolve(
   process.cwd(),
-  process.env.CREDENTIALS_PATH
+  process.env.CREDENTIALS_PATH || "credentials/oauth2.keys.json"
 );
 const tokenPath = path.resolve(process.cwd(), process.env.TOKEN_PATH);
 
