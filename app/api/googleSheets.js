@@ -4,11 +4,13 @@ const { google } = require("googleapis");
 const fs = require("fs");
 const path = require("path");
 
-const credentialsPath = path.resolve(
-  process.cwd(),
-  process.env.CREDENTIALS_PATH || "credentials/oauth2.keys.json"
-);
-const keys = JSON.parse(fs.readFileSync(credentialsPath, "utf8"));
+// const credentialsPath = path.resolve(
+//   process.cwd(),
+//   process.env.CREDENTIALS_PATH || "./credentials/oauth2.keys.json"
+// );
+// const keys = JSON.parse(fs.readFileSync(credentialsPath, "utf8"));
+
+const keys = JSON.parse(process.env.GOOGLE_CREDENTIALS);
 
 const clientId = keys.web.client_id;
 const clientSecret = keys.web.client_secret;
