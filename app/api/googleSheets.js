@@ -30,6 +30,10 @@ const path = require("path");
 //   throw new Error("Failed to load credentials");
 // }
 
+console.log("oauth2", process.env.GOOGLE_OAUTH2_KEYS);
+console.log("token", process.env.GOOGLE_TOKEN);
+console.log("env", process.env);
+
 const keys = JSON.parse(process.env.GOOGLE_OAUTH2_KEYS);
 const token = JSON.parse(process.env.GOOGLE_TOKEN);
 
