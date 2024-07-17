@@ -6,7 +6,7 @@ const path = require("path");
 
 const credentialsPath = path.resolve(
   process.cwd(),
-  process.env.CREDENTIALS_PATH || "../../credentials/oauth2.keys.json"
+  process.env.CREDENTIALS_PATH || "credentials/oauth2.keys.json"
 );
 const keys = JSON.parse(fs.readFileSync(credentialsPath, "utf8"));
 
