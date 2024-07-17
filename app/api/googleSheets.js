@@ -10,7 +10,13 @@ const path = require("path");
 // );
 // const keys = JSON.parse(fs.readFileSync(credentialsPath, "utf8"));
 
-const keys = JSON.parse(process.env.GOOGLE_CREDENTIALS);
+let keys;
+try {
+  keys = JSON.parse(process.env.GOOGLE_CREDENTIALS);
+} catch (error) {
+  console.error("Error parsing GOOGLE_CREDENTIALS:", error);
+  throw new Error("Invalid GOOGLE_CREDENTIALS format");
+}
 
 const clientId = keys.web.client_id;
 const clientSecret = keys.web.client_secret;
