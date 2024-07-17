@@ -88,8 +88,8 @@
 
 .notes {
   padding: 2px;
-  width: 95%;
-  max-height: 60px;
+  width: 80%;
+  height: 60px;
   font-family: WonderType;
   resize: none;
 }
@@ -99,6 +99,10 @@
   color: #f8f8f8;
   font-family: WonderType;
   font-size: large;
+}
+
+.preorder:active {
+  color: lightgrey;
 }
 
 .close {

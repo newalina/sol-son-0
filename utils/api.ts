@@ -9,7 +9,7 @@ export const appendDataToSheet = async (data: any) => {
     });
 
     if (response.ok) {
-      console.log("Data appended successfully!");
+      console.log("Data appended successfully");
     } else {
       console.error("Failed to append data:", response.statusText);
     }

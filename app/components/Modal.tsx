@@ -59,7 +59,9 @@ export const Modal = ({ isOpen, onClose, shoeId }: ModalProps) => {
     try {
       const response = await axios.post("/api/submit", data);
       console.log("Form submitted successfully:", response.data);
-      alert("Form submitted successfully");
+      alert(
+        "Your preorder form has been successfully submitted.\nYou will soon receive an email with details about your order.\nThank you for your interest in SOL SON 0."
+      );
     } catch (error) {
       console.error("Error submitting form:", error);
       alert("Error submitting form");
@@ -135,7 +137,7 @@ export const Modal = ({ isOpen, onClose, shoeId }: ModalProps) => {
           />
           <br />
           <br />
-          <label>Notes for SSO: </label>
+          <label>Notes for Tommy: </label>
           <br />
           <textarea
             className={styles.notes}
