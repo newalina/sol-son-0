@@ -4,13 +4,29 @@ const { google } = require("googleapis");
 const fs = require("fs");
 const path = require("path");
 
-const credentialsPath = path.resolve(
-  process.cwd(),
-  process.env.CREDENTIALS_PATH || "credentials/oauth2.keys.json"
-);
+const credentialsPath = path.resolve(process.cwd(), "credentials");
+
+fs.readdir(credentialsPath, (err, files) => {
+  if (err) {
+    console.error("Error reading credentials directory:", err);
+  } else {
+    console.log("Files in credentials directory:", files);
+  }
+});
+
+// const credentialsPath = path.resolve(
+//   process.cwd(),
+//   process.env.CREDENTIALS_PATH || "credentials/oauth2.keys.json"
+// );
+
 // const keys = JSON.parse(fs.readFileSync(credentialsPath, "utf8"));
 
 console.log("CREDENTIALS_PATH:", credentialsPath);
+console.log("CLIENT_ID:", keys.web.client_id);
+console.log("CLIENT_SECRET:", keys.web.client_secret);
+console.log("REDIRECT_URI:", keys.web.redirect_uris[0]);
+console.log("CREDENTIALS_PATH:", process.env.CREDENTIALS_PATH);
+console.log("ACCESS_TOKEN:", process.env.ACCESS_TOKEN);
 
 let keys;
 try {
@@ -43,11 +59,15 @@ const authenticate = async () => {
 
   oAuth2Client.setCredentials(token);
 
-  console.log("CLIENT_ID:", clientId);
-  console.log("CLIENT_SECRET:", clientSecret);
-  console.log("REDIRECT_URI:", redirectUri);
-  console.log("CREDENTIALS_PATH:", process.env.CREDENTIALS_PATH);
-  console.log("ACCESS_TOKEN:", process.env.ACCESS_TOKEN);
+  const currentTime = Date.now();
+  if (token.expiry_date < currentTime) {
+    console.log("Token expired, refreshing...");
+    const { credentials } = await oAuth2Client.refreshAccessToken();
+    oAuth2Client.setCredentials(credentials);
+
+    // Optionally, update your token in the environment or a file
+    console.log("New access token:", credentials.access_token);
+  }
 
   return oAuth2Client;
 };
