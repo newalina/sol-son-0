@@ -3,7 +3,7 @@ console.log("API route loaded");
 import { NextResponse } from "next/server";
 import appendToSheet from "../googleSheets";
 
-export async function POST(request) {
+export async function POST(request: Request) {
   try {
     const data = await request.json();
     console.log("Received data:", data);

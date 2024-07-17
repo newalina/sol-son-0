@@ -1,13 +1,14 @@
-require("dotenv").config();
+import express, { Request, Response } from "express";
+import bodyParser from "body-parser";
+import dotenv from "dotenv";
+import appendToSheet from "./googleSheets";
 
-const express = require("express");
-const bodyParser = require("body-parser");
-const appendToSheet = require("./googleSheets");
+dotenv.config();
 
 const app = express();
 app.use(bodyParser.json());
 
-app.post("/api/append", async (req, res) => {
+app.post("/api/append", async (req: Request, res: Response) => {
   try {
     const data = req.body.data;
     await appendToSheet(data);

@@ -1,13 +1,29 @@
-require("dotenv").config();
-const { google } = require("googleapis");
+import "dotenv/config";
+import { google } from "googleapis";
 
-const keys = JSON.parse(process.env.GOOGLE_OAUTH2_KEYS);
-const token = JSON.parse(process.env.GOOGLE_TOKEN);
+interface Keys {
+  web: {
+    client_id: string;
+    client_secret: string;
+    redirect_uris: string[];
+  };
+}
+
+interface Token {
+  access_token: string;
+  refresh_token: string;
+  scope: string;
+  token_type: string;
+  expiry_date: number;
+}
+
+const keys: Keys = JSON.parse(process.env.GOOGLE_OAUTH2_KEYS!);
+const token: Token = JSON.parse(process.env.GOOGLE_TOKEN!);
 
 const clientId = keys.web.client_id;
 const clientSecret = keys.web.client_secret;
 const redirectUri = keys.web.redirect_uris[0];
-const spreadsheetId = process.env.SPREADSHEET_ID;
+const spreadsheetId = process.env.SPREADSHEET_ID!;
 
 const authenticate = async () => {
   const oAuth2Client = new google.auth.OAuth2(
@@ -27,7 +43,7 @@ const authenticate = async () => {
   return oAuth2Client;
 };
 
-const appendToSheet = async (data) => {
+const appendToSheet = async (data: any[]) => {
   const auth = await authenticate();
   const sheets = google.sheets({ version: "v4", auth });
 
@@ -41,4 +57,4 @@ const appendToSheet = async (data) => {
   });
 };
 
-module.exports = appendToSheet;
+export default appendToSheet;
