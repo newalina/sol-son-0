@@ -21,13 +21,6 @@ fs.readdir(credentialsPath, (err, files) => {
 
 // const keys = JSON.parse(fs.readFileSync(credentialsPath, "utf8"));
 
-console.log("CREDENTIALS_PATH:", credentialsPath);
-console.log("CLIENT_ID:", keys.web.client_id);
-console.log("CLIENT_SECRET:", keys.web.client_secret);
-console.log("REDIRECT_URI:", keys.web.redirect_uris[0]);
-console.log("CREDENTIALS_PATH:", process.env.CREDENTIALS_PATH);
-console.log("ACCESS_TOKEN:", process.env.ACCESS_TOKEN);
-
 let keys;
 try {
   keys = JSON.parse(fs.readFileSync(credentialsPath, "utf8"));
