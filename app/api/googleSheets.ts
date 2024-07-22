@@ -49,7 +49,7 @@ const appendToSheet = async (data: any[]) => {
 
   await sheets.spreadsheets.values.append({
     spreadsheetId: spreadsheetId,
-    range: "Sheet1!A:D",
+    range: "SS0 REQUESTS!A:D",
     valueInputOption: "USER_ENTERED",
     requestBody: {
       values: [data],
