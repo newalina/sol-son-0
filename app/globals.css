@@ -1,0 +1,24 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+  overflow: hidden;
+  background: #fff;
+  color: #000;
+}
+
+.gate {
+  position: fixed;
+  inset: 0;
+  background-color: #fff;
+  background-image: url("/embossing-graphic.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
